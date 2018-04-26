@@ -4,13 +4,25 @@
   endl:        .asciiz  "\n"
 
 .text
-
+.globl main
 # #
 # int getDigit(int number);
 # List Used Registers Here:
 #
 # #
 getDigit:
+mul $t3,$t2,2
+bgt $t3,10,else
+add $t0,$t0,$t3
+j return
+else:
+div $t3,$a1
+mfhi $t4
+add $t0,$t0,$t4
+div $t3,$a1
+mflo $t4
+add $t0,$t0,$t4
+j return
 
 
 
@@ -22,12 +34,33 @@ getDigit:
 # 
 ##
 sumOfDoubleEvenPlace:
+li $t0,0
+li $a1,10
+li $a2,100
+div $t1,$a1
+mflo $t1
+while:
+div $t1,$a1
+mfhi $t2
+j getdigit
+return:
+div $t1,$a2
+mflo $t1
+bgt $t1,0,while
+jr $ra
+  
 
 main:
   li $s0, 89744563  # int test1 = 89744563;
   li $s1, 98756421  # int test2 = 98756421;
   li $s2, 0         # int result1 = 0;
   li $s3, 0         # int result2 = 0;
+  move $t1,$s0
+  jal sumOfDoubleEvenPlace
+  move $s2,$t0
+  move $t1,$s1
+  jal sumOfDoubleEvenPlace
+  move $s3,$t0
 
 
   # code for first function call

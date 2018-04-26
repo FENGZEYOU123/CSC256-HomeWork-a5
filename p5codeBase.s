@@ -42,7 +42,7 @@ mflo $t1
 while:
 div $t1,$a1
 mfhi $t2
-j getdigit
+j getDigit
 return:
 div $t1,$a2
 mflo $t1

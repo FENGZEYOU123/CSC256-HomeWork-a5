@@ -47,21 +47,28 @@ sumOfDoubleEvenPlace:
     mflo $t2
     
 while:
+
     div $t2,$a1
     mfhi $t3
 j getDigit
+
 return:
+    
+    li $t3,0 
     div $t2,$a2
     mflo $t2
-    bgt $t2,0,while
+    slt $t4,$t2,$t3
+    beq $t4,1, while
 jr $ra
   
 
 main:
+
   li $s0, 89744563  # int test1 = 89744563;
   li $s1, 98756421  # int test2 = 98756421;
   li $s2, 0         # int result1 = 0;
   li $s3, 0         # int result2 = 0;
+  
   move $t1,$s0
   jal sumOfDoubleEvenPlace
   move $s2,$t0

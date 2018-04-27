@@ -11,17 +11,22 @@
 #
 # #
 getDigit:
-mul $t3,$t2,2
-bgt $t3,10,else
-add $t0,$t0,$t3
+    li  $t5, 10
+    mul $t3,$t2,2
+    sgt $t4,$st3,$t5
+    beq $t4,1,Run
+    add $t0,$t0,$t3
 j return
-else:
-div $t3,$a1
-mfhi $t4
-add $t0,$t0,$t4
-div $t3,$a1
-mflo $t4
-add $t0,$t0,$t4
+
+Run:
+
+    div $t3,$a1
+    mfhi $t4
+    add $t0,$t0,$t4
+    div $t3,$a1
+    mflo $t4
+    add $t0,$t0,$t4
+    
 j return
 
 
@@ -34,19 +39,21 @@ j return
 # 
 ##
 sumOfDoubleEvenPlace:
-li $t1,0
-li $a1,10
-li $a2,100
-div $t2,$a1
-mflo $t2
+
+    li $t1,0
+    li $a1,10
+    li $a2,100
+    div $t2,$a1
+    mflo $t2
+    
 while:
-div $t2,$a1
-mfhi $t3
+    div $t2,$a1
+    mfhi $t3
 j getDigit
 return:
-div $t2,$a2
-mflo $t2
-bgt $t2,0,while
+    div $t2,$a2
+    mflo $t2
+    bgt $t2,0,while
 jr $ra
   
 

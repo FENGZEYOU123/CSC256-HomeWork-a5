@@ -34,19 +34,19 @@ j return
 # 
 ##
 sumOfDoubleEvenPlace:
-li $t0,0
+li $t1,0
 li $a1,10
 li $a2,100
-div $t1,$a1
-mflo $t1
+div $t2,$a1
+mflo $t2
 while:
-div $t1,$a1
-mfhi $t2
+div $t2,$a1
+mfhi $t3
 j getDigit
 return:
-div $t1,$a2
-mflo $t1
-bgt $t1,0,while
+div $t2,$a2
+mflo $t2
+bgt $t2,0,while
 jr $ra
   
 

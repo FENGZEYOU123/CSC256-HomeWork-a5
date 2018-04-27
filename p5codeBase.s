@@ -13,7 +13,7 @@
 getDigit:
     li  $t5, 10
     mul $t3,$t2,2
-    sgt $t4,$st3,$t5
+    sgt $t4,$t3,$t5
     beq $t4,1,Run
     add $t0,$t0,$t3
 j return
